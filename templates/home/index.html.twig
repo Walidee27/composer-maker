@@ -1,20 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil - FashionStore{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Nouvelle Collection 2025</h1>
+        <p class="col-md-8 fs-4">Découvrez nos dernières tendances mode. Des vêtements de qualité pour un style unique.</p>
+        <a class="btn btn-primary btn-lg" href="{{ path('app_product') }}">Voir la boutique</a>
+    </div>
+</div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/walide/DevB2/Composer&Maker/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Users/walide/DevB2/Composer&Maker/templates/home/index.html.twig</code></li>
-    </ul>
+<div class="row align-items-md-stretch">
+    <div class="col-md-6">
+        <div class="h-100 p-5 text-white bg-dark rounded-3">
+            <h2>Homme</h2>
+            <p>Une collection élégante et décontractée pour l'homme moderne.</p>
+            <button class="btn btn-outline-light" type="button">Voir Homme</button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="h-100 p-5 bg-light border rounded-3">
+            <h2>Femme</h2>
+            <p>Des pièces uniques pour sublimer votre garde-robe.</p>
+            <button class="btn btn-outline-secondary" type="button">Voir Femme</button>
+        </div>
+    </div>
 </div>
 {% endblock %}
