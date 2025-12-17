@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique - FashionStore{% endblock %}
+
+{% block body %}
+<h1 class="mb-4">Nos Produits</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {# Example static card if no products exist yet #}
+    <div class="col">
+        <div class="card h-100">
+            <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">T-shirt Premium</h5>
+                <p class="card-text">Un t-shirt en coton bio de haute qualité.</p>
+                <h5 class="text-primary">29.99 €</h5>
+            </div>
+            <div class="card-footer bg-transparent border-top-0">
+                <a href="#" class="btn btn-outline-dark w-100">Ajouter au panier</a>
+            </div>
+        </div>
+    </div>
+    
+    {# Loop through products from database #}
+    {# 
+    {% for product in products %}
+    <div class="col">
+        <div class="card h-100">
+            <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+                <h5 class="text-primary">{{ product.price }} €</h5>
+            </div>
+            <div class="card-footer bg-transparent border-top-0">
+                <a href="#" class="btn btn-outline-dark w-100">Ajouter au panier</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="alert alert-info">Aucun produit trouvé.</div>
+    {% endfor %}
+    #}
+</div>
+{% endblock %}
