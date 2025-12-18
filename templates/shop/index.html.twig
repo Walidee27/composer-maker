@@ -1,20 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ShopController!{% endblock %}
+{% block title %}Boutique - Opulentia{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/walide/DevB2/Composer&Maker/src/Controller/ShopController.php</code></li>
-        <li>Your template at <code>/Users/walide/DevB2/Composer&Maker/templates/shop/index.html.twig</code></li>
-    </ul>
+<div class="container mt-5 pt-5">
+    <div class="text-center mb-5 fade-in">
+        <h1 class="mb-4 text-center display-5 text-uppercase">
+            {% if current_gender == 'WOMAN' %}
+                COLLECTION FEMME
+            {% elseif current_gender == 'MAN' %}
+                COLLECTION HOMME
+            {% else %}
+                TOUTE LA COLLECTION
+            {% endif %}
+        </h1>
+        <div class="d-flex justify-content-center">
+            <div style="width: 50px; height: 1px; background-color: #000;"></div>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        {% for product in products %}
+            <div class="col-md-6 col-lg-4 fade-in" style="animation-delay: {{ loop.index0 * 0.1 }}s">
+                <div class="card h-100">
+                    <a href="{{ path('app_cart_add', {'id': product.id}) }}" class="text-decoration-none">
+                        <div class="position-relative overflow-hidden mb-3">
+                            <img src="{{ product.image ? product.image : 'https://placehold.co/600x750?text=' ~ product.name }}" class="card-img-top w-100" alt="{{ product.name }}" style="object-fit: cover; aspect-ratio: 3/4;">
+                        </div>
+                        <div class="card-body text-center p-0">
+                            <h5 class="card-title text-dark mb-2" style="font-size: 0.9rem; letter-spacing: 1px;">{{ product.name }}</h5>
+                            <p class="card-text text-muted mb-3">{{ product.price }} €</p>
+                            <span class="d-inline-block text-dark text-uppercase fw-bold mt-2" style="font-size: 0.75rem; letter-spacing: 1px; border-bottom: 1px solid #000; padding-bottom: 2px;">Ajouter au panier</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted">Aucune pièce disponible pour le moment.</p>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

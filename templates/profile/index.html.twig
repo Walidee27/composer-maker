@@ -3,47 +3,46 @@
 {% block title %}Mon Profil{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
+<div class="container mt-5 pt-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="h4 mb-0">Mon Profil</h2>
+        <div class="col-md-8 col-lg-6">
+            <h1 class="text-center h3 mb-5 text-uppercase" style="letter-spacing: 2px;">MON COMPTE</h1>
+
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger rounded-0 border-0 bg-danger bg-opacity-10 text-danger small mb-4">
+                    {{ message }}
                 </div>
-                <div class="card-body">
-                    {% for message in app.flashes('error') %}
-                        <div class="alert alert-danger">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
+            {% endfor %}
 
-                    <div class="mb-3">
-                        <strong>Email :</strong> {{ user.email }}
-                    </div>
-                    <div class="mb-3">
-                        <strong>Nom :</strong> {{ user.lastName }}
-                    </div>
-                    <div class="mb-3">
-                        <strong>Prénom :</strong> {{ user.firstName }}
-                    </div>
-                    <div class="mb-3">
-                        <strong>Adresse :</strong> {{ user.address }}
-                    </div>
-                    <div class="mb-3">
-                        <strong>Ville :</strong> {{ user.city }} ({{ user.zipCode }})
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center mt-4">
-                        <a href="{{ path('app_profile_edit') }}" class="btn btn-primary">Modifier mes informations</a>
-                        
-                        {% if not is_granted('ROLE_ADMIN') %}
-                            <form method="post" action="{{ path('app_profile_delete') }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');">
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-                                <button class="btn btn-danger">Supprimer mon compte</button>
-                            </form>
-                        {% endif %}
+            <div class="mb-5">
+                <h2 class="h6 text-uppercase text-muted mb-4 border-bottom pb-2">Mes Informations</h2>
+                
+                <div class="row mb-3">
+                    <div class="col-4 text-muted small text-uppercase">Email</div>
+                    <div class="col-8">{{ user.email }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-4 text-muted small text-uppercase">Nom</div>
+                    <div class="col-8">{{ user.lastName }} {{ user.firstName }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-4 text-muted small text-uppercase">Adresse</div>
+                    <div class="col-8">
+                        {{ user.address }}<br>
+                        {{ user.zipCode }} {{ user.city }}
                     </div>
                 </div>
+            </div>
+
+            <div class="d-grid gap-3">
+                <a href="{{ path('app_profile_edit') }}" class="btn btn-dark">MODIFIER MES INFORMATIONS</a>
+                
+                {% if not is_granted('ROLE_ADMIN') %}
+                    <form method="post" action="{{ path('app_profile_delete') }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');" class="d-grid">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                        <button class="btn btn-outline-danger border-0 text-uppercase small" style="letter-spacing: 1px;">Supprimer mon compte</button>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </div>

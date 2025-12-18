@@ -1,29 +1,81 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil - FashionStore{% endblock %}
+{% block title %}Accueil - Opulentia{% endblock %}
 
 {% block body %}
-<div class="p-5 mb-4 bg-light rounded-3">
-    <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Nouvelle Collection 2025</h1>
-        <p class="col-md-8 fs-4">Découvrez nos dernières tendances mode. Des vêtements de qualité pour un style unique.</p>
-        <a class="btn btn-primary btn-lg" href="{{ path('app_product') }}">Voir la boutique</a>
+<!-- Hero Section -->
+<div class="position-relative vh-100" style="margin-top: -80px;">
+    <!-- Carousel Background -->
+    <div id="heroCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner h-100">
+            <div class="carousel-item active h-100">
+                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="d-block w-100 h-100" style="object-fit: cover;" alt="Fashion 1">
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0,0,0,0.4);"></div>
+            </div>
+            <div class="carousel-item h-100">
+                <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="d-block w-100 h-100" style="object-fit: cover;" alt="Fashion 2">
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0,0,0,0.4);"></div>
+            </div>
+            <div class="carousel-item h-100">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="d-block w-100 h-100" style="object-fit: cover;" alt="Fashion 3">
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0,0,0,0.4);"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Static Content Overlay -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-center text-white z-2" style="pointer-events: none;">
+        <div class="p-4" style="pointer-events: auto;">
+            <h1 class="display-1 fw-bold mb-4" style="letter-spacing: 5px;">COLLECTION 2025</h1>
+            <p class="lead mb-5 text-uppercase" style="letter-spacing: 2px;">L'élégance intemporelle</p>
+            <a class="btn btn-outline-light px-5 py-3 rounded-0" href="{{ path('app_product') }}">DÉCOUVRIR</a>
+        </div>
     </div>
 </div>
 
-<div class="row align-items-md-stretch">
-    <div class="col-md-6">
-        <div class="h-100 p-5 text-white bg-dark rounded-3">
-            <h2>Homme</h2>
-            <p>Une collection élégante et décontractée pour l'homme moderne.</p>
-            <button class="btn btn-outline-light" type="button">Voir Homme</button>
+<!-- Editorial Section -->
+<div class="container py-5 my-5">
+    <div class="row align-items-center gy-5">
+        <div class="col-md-6 fade-in">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="img-fluid w-100" alt="Femme" style="aspect-ratio: 4/5; object-fit: cover;">
+        </div>
+        <div class="col-md-6 text-center px-md-5 fade-in">
+            <h2 class="mb-4">POUR ELLE</h2>
+            <p class="text-muted mb-4">Une sélection de pièces iconiques pour sublimer chaque instant. Des matières nobles, des coupes parfaites.</p>
+            <a href="{{ path('app_product', {'gender': 'WOMAN'}) }}" class="text-dark text-uppercase fw-bold text-decoration-none border-bottom border-dark pb-1" style="letter-spacing: 1px; font-size: 0.9rem;">Explorer la collection</a>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="h-100 p-5 bg-light border rounded-3">
-            <h2>Femme</h2>
-            <p>Des pièces uniques pour sublimer votre garde-robe.</p>
-            <button class="btn btn-outline-secondary" type="button">Voir Femme</button>
+</div>
+
+<div class="container py-5 mb-5">
+    <div class="row align-items-center gy-5 flex-md-row-reverse">
+        <div class="col-md-6 fade-in">
+            <img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="img-fluid w-100" alt="Homme" style="aspect-ratio: 4/5; object-fit: cover;">
+        </div>
+        <div class="col-md-6 text-center px-md-5 fade-in">
+            <h2 class="mb-4">POUR LUI</h2>
+            <p class="text-muted mb-4">L'alliance du confort et de l'élégance. Pour l'homme moderne qui ne fait aucun compromis.</p>
+            <a href="{{ path('app_product', {'gender': 'MAN'}) }}" class="text-dark text-uppercase fw-bold text-decoration-none border-bottom border-dark pb-1" style="letter-spacing: 1px; font-size: 0.9rem;">Explorer la collection</a>
+        </div>
+    </div>
+</div>
+
+<!-- Services Section (Minimalist) -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center gy-4">
+            <div class="col-md-4 border-end border-secondary-subtle">
+                <h4 class="h6 mb-2">LIVRAISON OFFERTE</h4>
+                <p class="small text-muted mb-0">Pour toute commande</p>
+            </div>
+            <div class="col-md-4 border-end border-secondary-subtle">
+                <h4 class="h6 mb-2">RETOURS GRATUITS</h4>
+                <p class="small text-muted mb-0">Sous 30 jours</p>
+            </div>
+            <div class="col-md-4">
+                <h4 class="h6 mb-2">EMBALLAGE ART</h4>
+                <p class="small text-muted mb-0">Un écrin pour vos achats</p>
+            </div>
         </div>
     </div>
 </div>

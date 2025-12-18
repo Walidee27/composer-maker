@@ -1,20 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}Mon Panier - Opulentia{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container mt-5 pt-5">
+    <h1 class="text-center mb-5">VOTRE PANIER</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {% if items | length > 0 %}
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="table-responsive mb-5">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr class="text-uppercase small text-muted border-bottom">
+                                <th class="py-3 fw-normal">Produit</th>
+                                <th class="py-3 fw-normal text-center">Quantité</th>
+                                <th class="py-3 fw-normal text-end">Prix</th>
+                                <th class="py-3"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                                <tr class="border-bottom">
+                                    <td class="py-4">
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://placehold.co/100x125?text={{ item.product.name }}" alt="{{ item.product.name }}" class="me-4" style="width: 80px; height: 100px; object-fit: cover;">
+                                            <div>
+                                                <h6 class="text-uppercase mb-1" style="letter-spacing: 1px;">{{ item.product.name }}</h6>
+                                                <p class="text-muted small mb-0">Réf: {{ item.product.id }}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="mx-2">{{ item.quantity }}</span>
+                                    </td>
+                                    <td class="text-end fw-bold">{{ item.product.price * item.quantity }} €</td>
+                                    <td class="text-end">
+                                        <a href="{{ path('app_cart_remove', {'id': item.product.id}) }}" class="text-muted text-decoration-none">
+                                            <i class="bi bi-x-lg"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/walide/DevB2/Composer&Maker/src/Controller/CartController.php</code></li>
-        <li>Your template at <code>/Users/walide/DevB2/Composer&Maker/templates/cart/index.html.twig</code></li>
-    </ul>
+                <div class="row justify-content-end">
+                    <div class="col-md-5 col-lg-4">
+                        <div class="bg-light p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="text-uppercase small">Sous-total</span>
+                                <span>{{ total }} €</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-4">
+                                <span class="text-uppercase small">Livraison</span>
+                                <span>OFFERTE</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-4 border-top border-dark pt-3">
+                                <span class="text-uppercase fw-bold">Total</span>
+                                <span class="fw-bold">{{ total }} €</span>
+                            </div>
+                            <a href="{{ path('app_checkout') }}" class="btn btn-primary w-100 py-3">COMMANDER</a>
+                            <div class="text-center mt-3">
+                                <a href="{{ path('app_product') }}" class="text-muted small text-decoration-underline text-uppercase">Continuer mes achats</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="text-center py-5">
+            <p class="text-muted mb-4">Votre panier est vide.</p>
+            <a href="{{ path('app_product') }}" class="btn btn-secondary px-5">DÉCOUVRIR LA COLLECTION</a>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

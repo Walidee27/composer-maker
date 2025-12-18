@@ -19,9 +19,18 @@ class ProductType extends AbstractType
             ->add('price')
             ->add('stock')
             ->add('image')
+            ->add('gender', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, [
+                'choices' => [
+                    'Homme' => 'MAN',
+                    'Femme' => 'WOMAN',
+                    'Unisexe' => 'UNISEX',
+                ],
+                'label' => 'Genre',
+                'required' => true,
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }
