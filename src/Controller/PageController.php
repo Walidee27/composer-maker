@@ -37,4 +37,28 @@ final class PageController extends AbstractController
     {
         return $this->render('page/qui_sommes_nous.html.twig');
     }
+
+    #[Route('/developpement-durable', name: 'app_developpement_durable')]
+    public function developpementDurable(): Response
+    {
+        return $this->render('page/developpement_durable.html.twig');
+    }
+
+    #[Route('/livraison-retours', name: 'app_livraison_retours')]
+    public function livraisonRetours(): Response
+    {
+        return $this->render('page/livraison_retours.html.twig');
+    }
+
+    #[Route('/faq', name: 'app_faq')]
+    public function faq(): Response
+    {
+        return $this->render('page/faq.html.twig');
+    }
+
+    #[Route('/carrieres', name: 'app_carrieres')]
+    public function carrieres(): Response
+    {
+        return $this->render('page/carrieres.html.twig');
+    }
 }

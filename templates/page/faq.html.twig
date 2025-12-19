@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FAQ - Opulentia{% endblock %}
+
+{% block body %}
+<div class="container mt-5 mb-5 fade-in" style="max-width: 800px;">
+    <h1 class="mb-5 text-center display-6">QUESTIONS FRÉQUENTES</h1>
+
+    <div class="accordion accordion-flush" id="faqAccordion">
+        
+        <!-- Section 1: Commandes -->
+        <div class="mb-4">
+            <h2 class="h5 text-uppercase mb-3 ps-3 border-start border-3 border-dark">Ma Commande</h2>
+            
+            <div class="accordion-item bg-transparent border-bottom">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent shadow-none text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        Comment suivre ma commande ?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Une fois votre commande expédiée, vous recevrez un email contenant un numéro de suivi. Vous pouvez également suivre l'état de votre commande depuis votre compte client, rubrique "Mes Commandes".
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item bg-transparent border-bottom">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent shadow-none text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        Puis-je modifier ou annuler ma commande ?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Nous traitons les commandes très rapidement. Si vous souhaitez modifier ou annuler votre commande, veuillez contacter notre Service Client dans l'heure suivant votre achat. Passé ce délai, nous ne pourrons plus garantir la modification.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Livraison & Retours -->
+        <div class="mb-4">
+            <h2 class="h5 text-uppercase mb-3 ps-3 border-start border-3 border-dark">Livraison & Retours</h2>
+
+            <div class="accordion-item bg-transparent border-bottom">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent shadow-none text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        Quels sont les délais de livraison ?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        La livraison standard prend généralement 3 à 5 jours ouvrés. Avec l'option Express, vous pouvez être livré dès le lendemain pour toute commande passée avant 11h.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item bg-transparent border-bottom">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent shadow-none text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                        Comment effectuer un retour ?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Les retours sont gratuits depuis la France. Connectez-vous à votre compte, sélectionnez la commande concernée et cliquez sur "Effectuer un retour" pour télécharger votre étiquette prépayée.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Produits -->
+        <div class="mb-4">
+            <h2 class="h5 text-uppercase mb-3 ps-3 border-start border-3 border-dark">Nos Produits</h2>
+
+            <div class="accordion-item bg-transparent border-bottom">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent shadow-none text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                        Comment choisir ma taille ?
+                    </button>
+                </h2>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Un guide des tailles est disponible sur chaque fiche produit. Si vous hésitez entre deux tailles, nous vous conseillons généralement de prendre la taille au-dessus pour plus de confort, ou de contacter notre service client.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item bg-transparent border-bottom">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent shadow-none text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                        Comment entretenir mes vêtements Opulentia ?
+                    </button>
+                </h2>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Chaque vêtement possède une étiquette d'entretien spécifique. Nous recommandons généralement un lavage délicat à basse température et un séchage à l'air libre pour préserver la qualité des fibres.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
