@@ -272,3 +272,32 @@ footer a:hover {
     background-color: #f0fff4;
     color: #006600;
 }
+
+/* Tables */
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-border-color: #f0f0f0;
+}
+
+.table th {
+    font-family: var(--font-primary);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: var(--color-grey-medium);
+    padding-bottom: 1rem;
+}
+
+.table td {
+    font-size: 0.9rem;
+    padding: 1.5rem 0.5rem;
+    color: var(--color-black);
+}
+
+/* Badges */
+.badge {
+    font-family: var(--font-primary);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    padding: 0.5em 1em;
+}

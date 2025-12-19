@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Commandes - Admin{% endblock %}
+
+{% block body %}
+<div class="container mt-5 pt-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h1 class="h3 text-uppercase mb-0">Gestion des Commandes</h1>
+        <a href="{{ path('app_admin') }}" class="btn btn-outline-dark">Retour au Dashboard</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr class="small text-uppercase text-muted">
+                    <th class="fw-normal border-0">N°</th>
+                    <th class="fw-normal border-0">Client</th>
+                    <th class="fw-normal border-0">Date</th>
+                    <th class="fw-normal border-0">Total</th>
+                    <th class="fw-normal border-0">Statut</th>
+                    <th class="fw-normal border-0 text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td class="border-light">#{{ order.id }}</td>
+                        <td class="border-light">
+                            {{ order.user.firstName }} {{ order.user.lastName }}<br>
+                            <small class="text-muted">{{ order.user.email }}</small>
+                        </td>
+                        <td class="border-light">{{ order.createdAt|date('d/m/Y H:i') }}</td>
+                        <td class="border-light fw-bold">{{ order.total|number_format(2, ',', ' ') }} €</td>
+                        <td class="border-light">
+                            <span class="badge rounded-0 fw-normal text-uppercase px-2 py-1 
+                                {% if order.status == 'PAID' %}bg-success bg-opacity-10 text-success
+                                {% elseif order.status == 'PENDING' %}bg-warning bg-opacity-10 text-warning
+                                {% elseif order.status == 'SHIPPED' %}bg-info bg-opacity-10 text-info
+                                {% elseif order.status == 'DELIVERED' %}bg-primary bg-opacity-10 text-primary
+                                {% else %}bg-secondary bg-opacity-10 text-secondary{% endif %}">
+                                {{ order.status }}
+                            </span>
+                        </td>
+                        <td class="border-light text-end">
+                            <a href="{{ path('app_admin_order_show', {'id': order.id}) }}" class="btn btn-sm btn-dark">Détails</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">Aucune commande trouvée.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

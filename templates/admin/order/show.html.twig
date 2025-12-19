@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande #{{ order.id }} - Admin{% endblock %}
+
+{% block body %}
+<div class="container mt-5 pt-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h1 class="h3 text-uppercase mb-0">Commande #{{ order.id }}</h1>
+        <a href="{{ path('app_admin_order_index') }}" class="btn btn-outline-dark">Retour à la liste</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Order Items -->
+            <div class="mb-5">
+                <h2 class="h6 text-uppercase text-muted mb-4 border-bottom pb-2">Articles</h2>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr class="small text-uppercase text-muted">
+                                <th class="fw-normal border-0">Produit</th>
+                                <th class="fw-normal border-0 text-center">Quantité</th>
+                                <th class="fw-normal border-0 text-end">Prix</th>
+                                <th class="fw-normal border-0 text-end">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order.items %}
+                                <tr>
+                                    <td class="border-light">
+                                        <div class="d-flex align-items-center">
+                                            {% if item.product.image %}
+                                                <img src="{{ item.product.image }}" alt="{{ item.product.name }}" style="width: 50px; height: 60px; object-fit: cover;" class="me-3">
+                                            {% endif %}
+                                            <div>
+                                                <div class="fw-bold">{{ item.product.name }}</div>
+                                                <small class="text-muted">Réf: {{ item.product.id }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="border-light text-center">{{ item.quantity }}</td>
+                                    <td class="border-light text-end">{{ item.price|number_format(2, ',', ' ') }} €</td>
+                                    <td class="border-light text-end">{{ (item.price * item.quantity)|number_format(2, ',', ' ') }} €</td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="3" class="text-end fw-bold border-0 pt-4">TOTAL</td>
+                                <td class="text-end fw-bold border-0 pt-4">{{ order.total|number_format(2, ',', ' ') }} €</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <!-- Customer Info -->
+            <div class="card bg-light border-0 rounded-0 p-4 mb-4">
+                <h2 class="h6 text-uppercase mb-3">Client</h2>
+                <p class="mb-1 fw-bold">{{ order.user.firstName }} {{ order.user.lastName }}</p>
+                <p class="mb-3 text-muted">{{ order.user.email }}</p>
+                
+                <h2 class="h6 text-uppercase mb-3 mt-4">Livraison</h2>
+                <p class="mb-0 text-muted">
+                    {{ order.user.address }}<br>
+                    {{ order.user.zipCode }} {{ order.user.city }}
+                </p>
+            </div>
+
+            <!-- Status Management -->
+            <div class="card border border-light rounded-0 p-4">
+                <h2 class="h6 text-uppercase mb-3">Gestion du Statut</h2>
+                <form action="{{ path('app_admin_order_status', {'id': order.id}) }}" method="post">
+                    <div class="mb-3">
+                        <select name="status" class="form-select border-0 border-bottom rounded-0 bg-transparent shadow-none">
+                            <option value="PENDING" {% if order.status == 'PENDING' %}selected{% endif %}>En attente</option>
+                            <option value="PAID" {% if order.status == 'PAID' %}selected{% endif %}>Payée</option>
+                            <option value="SHIPPED" {% if order.status == 'SHIPPED' %}selected{% endif %}>Expédiée</option>
+                            <option value="DELIVERED" {% if order.status == 'DELIVERED' %}selected{% endif %}>Livrée</option>
+                            <option value="CANCELLED" {% if order.status == 'CANCELLED' %}selected{% endif %}>Annulée</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-dark w-100">Mettre à jour</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

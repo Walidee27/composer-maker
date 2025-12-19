@@ -34,6 +34,44 @@
                 </div>
             </div>
 
+            <div class="mb-5">
+                <h2 class="h6 text-uppercase text-muted mb-4 border-bottom pb-2">Mes Commandes</h2>
+                
+                {% if user.orders is empty %}
+                    <p class="text-muted small">Vous n'avez pas encore passé de commande.</p>
+                {% else %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr class="small text-uppercase text-muted">
+                                    <th class="fw-normal border-0">N°</th>
+                                    <th class="fw-normal border-0">Date</th>
+                                    <th class="fw-normal border-0">Statut</th>
+                                    <th class="fw-normal border-0 text-end">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in user.orders %}
+                                    <tr>
+                                        <td class="border-light">#{{ order.id }}</td>
+                                        <td class="border-light">{{ order.createdAt|date('d/m/Y') }}</td>
+                                        <td class="border-light">
+                                            <span class="badge rounded-0 fw-normal text-uppercase px-2 py-1 
+                                                {% if order.status == 'PAID' %}bg-success bg-opacity-10 text-success
+                                                {% elseif order.status == 'PENDING' %}bg-warning bg-opacity-10 text-warning
+                                                {% else %}bg-secondary bg-opacity-10 text-secondary{% endif %}">
+                                                {{ order.status }}
+                                            </span>
+                                        </td>
+                                        <td class="border-light text-end">{{ order.total|number_format(2, ',', ' ') }} €</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
+
             <div class="d-grid gap-3">
                 <a href="{{ path('app_profile_edit') }}" class="btn btn-dark">MODIFIER MES INFORMATIONS</a>
                 
